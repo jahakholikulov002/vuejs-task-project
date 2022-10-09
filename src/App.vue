@@ -6,12 +6,11 @@
 </template>
 <script>
 import Header from '@/components/Header'
-import Button from '@/components/Button'
+
 export default { // component larni export import qiliw uchun 
   name: "App", // ismini registratsiya qlib olamiz 
   components:{ // registratsiyadan utagn componentlar 
     Header,
-    Button,
   }
 }
 
