@@ -1,30 +1,63 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="container">
+     <Header title="Track" />
+  </div>
+
 </template>
+<script>
+import Header from '@/components/Header'
+import Button from '@/components/Button'
+export default { // component larni export import qiliw uchun 
+  name: "App", // ismini registratsiya qlib olamiz 
+  components:{ // registratsiyadan utagn componentlar 
+    Header,
+    Button,
+  }
+}
+
+</script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
+ @import url('https://fonts.googleapis.com/css?family=Poppins:ital,wght@0,600;0,700;1,400;1,500&display=swap');
+ 
+ *{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+ }
+ body{
+  font-family: "Poppins", sans-serif;
+ }
+ .container{
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
   padding: 30px;
+  border-radius: 5px;
+ }
+.btn{
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.btn:focus{
+  outline: none;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.btn:active{
+  transform: scale(0.98);
 }
-</style>
+.btn-block{
+display: block;
+width: 100%;
+}
+ </style>
