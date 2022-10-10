@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <Header title="Track" />
-    <AddTask @add-task="addTask" />
+    <Header @toggle-add-task="toggleAddTask" title="Notes" :showAddTask="showAddTask" />
+    <div v-if="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
   </div>
 
@@ -19,11 +21,15 @@ export default { // component larni export import qiliw uchun
   },
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showAddTask: false
     }
   },
   methods: {
-    addTask(task){
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask
+    },
+    addTask(task) {
       this.tasks = [...this.tasks, task]
     },
     deleteTask(id) {
