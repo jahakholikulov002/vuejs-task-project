@@ -24,7 +24,7 @@ export default { // component larni export import qiliw uchun
   },
   methods: {
     addTask(task){
-      this.tasks = [...tasks, task]
+      this.tasks = [...this.tasks, task]
     },
     deleteTask(id) {
       if (confirm('Are you sure to delete?')) {
