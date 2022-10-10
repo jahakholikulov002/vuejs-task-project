@@ -1,47 +1,57 @@
 <template>
   <div class="container">
-     <Header title="Track" />
-     <Tasks @delete-task="deleteTask" :tasks="tasks"/>
+    <Header title="Track" />
+    <AddTask @add-task="addTask" />
+    <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
   </div>
 
 </template>
 <script>
 import Header from '@/components/Header';
 import Tasks from '@/components/Tasks';
+import AddTask from '@/components/AddTask'
 export default { // component larni export import qiliw uchun 
   name: "App", // ismini registratsiya qlib olamiz 
-  components:{ // registratsiyadan utagn componentlar 
+  components: { // registratsiyadan utagn componentlar 
     Header,
     Tasks,
+    AddTask,
   },
-  data(){
-    return{
-      tasks:[]
+  data() {
+    return {
+      tasks: []
     }
   },
-  methods:{
-    deleteTask(id){
-      if(confirm('Are you sure to delete?')){
-        this.tasks = this.tasks.filter((task)=>task.id !== id)
+  methods: {
+    addTask(task){
+      this.tasks = [...tasks, task]
+    },
+    deleteTask(id) {
+      if (confirm('Are you sure to delete?')) {
+        this.tasks = this.tasks.filter((task) => task.id !== id)
       }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task)
+
     }
   },
-  created(){
-    this.tasks=[  //  Bu yerda biz qullayotgan "this." methodi bizning data ga teng
+  created() {
+    this.tasks = [  //  Bu yerda biz qullayotgan "this." methodi bizning data ga teng
       {
-        id:1,
+        id: 1,
         text: 'Liverpool was created',
         day: 'March 1st march 1989 at 2:30pm',
         reminder: true
       },
       {
-        id:2,
+        id: 2,
         text: 'Barcelona was created',
         day: 'January 1st march 1989 at 1:30pm',
         reminder: true
       },
       {
-        id:3,
+        id: 3,
         text: 'Chelsea was created',
         day: 'March 1st march 1919 at 2:30pm',
         reminder: false
@@ -54,17 +64,19 @@ export default { // component larni export import qiliw uchun
 </script>
 
 <style>
- @import url('https://fonts.googleapis.com/css?family=Poppins:ital,wght@0,600;0,700;1,400;1,500&display=swap');
- 
- *{
+@import url('https://fonts.googleapis.com/css?family=Poppins:ital,wght@0,600;0,700;1,400;1,500&display=swap');
+
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
- }
- body{
+}
+
+body {
   font-family: "Poppins", sans-serif;
- }
- .container{
+}
+
+.container {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -72,8 +84,9 @@ export default { // component larni export import qiliw uchun
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
- }
-.btn{
+}
+
+.btn {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -86,14 +99,17 @@ export default { // component larni export import qiliw uchun
   font-size: 15px;
   font-family: inherit;
 }
-.btn:focus{
+
+.btn:focus {
   outline: none;
 }
-.btn:active{
+
+.btn:active {
   transform: scale(0.98);
 }
-.btn-block{
-display: block;
-width: 100%;
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
- </style>
+</style>
